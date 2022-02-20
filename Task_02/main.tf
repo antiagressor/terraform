@@ -30,28 +30,14 @@ module "ec2" {
   vpc_security_group = ["sg-07e3094021c337c5f", "sg-0edd4d70180bb1cba"]
 }
 
+module "rds" {
+  source = "./modules/RDS"
 
-
-
-
-
-
-
-#data "aws_ami" "amazon_linux" {
-#  most_recent = true
-#
-#  filter {
-#    name   = "name"
-#    values = ["amzn2-ami-kernel-5.10-hvm-*-x86_64-gp2"]
-#  }
-
-#  owners = ["amazon"]
-#}
-#
-#resource "aws_instance" "tf-my-instance" {
-#  ami = data.aws_ami.amazon_linux.id
-#  instance_type = var.instance_type
-#  tags = {
-#    Name = "my-first-tf-instance"
-#  }
-#}
+  db_subnet_group_name = "default-vpc-0a71ef66c38aebc6d"
+  vpc_security_group   = ["sg-09d50438a8371946b"]
+  db_identifier        = "tf-db-instance"
+  db_name              = "testdb"
+  db_username          = "testusername"
+  db_password          = "testpassword"
+  engine_version       = "10.5"
+}

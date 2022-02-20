@@ -25,7 +25,6 @@ variable "vpc_id" {
 
 variable "subnet_id" {
   description = "subnet id"
-  default = "subnet-0aae943cc418196ad"
 }
 
 variable "vpc_security_group" {
